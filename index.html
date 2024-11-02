@@ -8,6 +8,14 @@
   <head>
     <title>Andrew Maza Portfolio Page</title>
     <meta charset="utf-8" />
+    <meta property="og:title" content="Andrew Maza Portfolio Page" />
+    <meta
+      property="og:description"
+      content="Innovating the digital space with thoughtful development."
+    />
+    <meta property="og:image" content="images/Portfolio Avatar.png" />
+    <meta property="og:url" content="https://yourportfolio.com" />
+    <meta property="og:type" content="website" />
     <meta
       name="viewport"
       content="width=device-width, initial-scale=1, user-scalable=no"
@@ -21,10 +29,14 @@
         <!-- Logo -->
         <div id="logo">
           <span class="image avatar48"
-            ><img src="images/Portfolio Avatar.png" alt=""
+            ><img
+              src="images/portfolio-avatar.png"
+              alt="Portrait of Andrew Maza"
           /></span>
-          <h1 id="title">Andrew Maza</h1>
-          <p>Innovating the digital space with thoughtful development</p>
+          <div class="name-container">
+            <h1 id="title">Andrew Maza</h1>
+            <p>Driving innovation with thoughtful development</p>
+          </div>
         </div>
 
         <!-- Nav -->
@@ -58,28 +70,24 @@
         <!-- Social Icons -->
         <ul class="icons">
           <li>
-            <a href="#" class="icon brands fa-twitter"
-              ><span class="label">Twitter</span></a
+            <a
+              href="https://www.linkedin.com/in/andrewmaza"
+              class="icon brands fa-linkedin"
+              ><span class="label">LinkedIn</span></a
             >
           </li>
           <li>
-            <a href="#" class="icon brands fa-facebook-f"
-              ><span class="label">Facebook</span></a
-            >
-          </li>
-          <li>
-            <a href="#" class="icon brands fa-github"
+            <a
+              href="https://github.com/andrew4857"
+              class="icon brands fa-github"
               ><span class="label">Github</span></a
             >
           </li>
           <li>
-            <a href="#" class="icon brands fa-dribbble"
-              ><span class="label">Dribbble</span></a
-            >
-          </li>
-          <li>
-            <a href="#" class="icon solid fa-envelope"
-              ><span class="label">Email</span></a
+            <a
+              href="https://gitlab.com/andrew7864"
+              class="icon brands fa-gitlab"
+              ><span class="label">GitLab</span></a
             >
           </li>
         </ul>
@@ -127,56 +135,64 @@
             <div class="col-4 col-12-mobile">
               <article class="item">
                 <a href="#" class="image fit"
-                  ><img src="images/pic02.jpg" alt=""
+                  ><img
+                    src="images/car-car.png"
+                    alt="An automobile dealership site with a car"
                 /></a>
                 <header>
-                  <h3>Ipsum Feugiat</h3>
+                  <h3>Automobile Dealership Site</h3>
                 </header>
               </article>
-              <article class="item">
+              <!-- <article class="item">
                 <a href="#" class="image fit"
                   ><img src="images/pic03.jpg" alt=""
                 /></a>
                 <header>
-                  <h3>Rhoncus Semper</h3>
+                  <h3>Project 4</h3>
+                </header>
+              </article> -->
+            </div>
+            <div class="col-4 col-12-mobile">
+              <article class="item">
+                <a href="#" class="image fit"
+                  ><img
+                    src="images/helloroad-image.png"
+                    alt="A brand image for HelloRoad, which depicts an all terrain vehicle on the top of the world and hot air baloons in the background."
+                /></a>
+                <header>
+                  <h3>HelloRoad</h3>
+                </header>
+              </article>
+              <article class="item">
+                <a href="#" class="image fit"
+                  ><img
+                    src="images/project-coming-soon.png"
+                    alt="An image of technology for a project that is in the work."
+                /></a>
+                <header>
+                  <h3>Project Reveal Coming Soon!</h3>
                 </header>
               </article>
             </div>
             <div class="col-4 col-12-mobile">
               <article class="item">
                 <a href="#" class="image fit"
-                  ><img src="images/pic04.jpg" alt=""
+                  ><img
+                    src="images/project-task-manager.png"
+                    alt="An image of a project management dashboard that tracks project name with the number of tasks."
                 /></a>
                 <header>
-                  <h3>Greatest Project Goes Here</h3>
+                  <h3>Project Task Manager</h3>
                 </header>
               </article>
-              <article class="item">
-                <a href="#" class="image fit"
-                  ><img src="images/pic05.jpg" alt=""
-                /></a>
-                <header>
-                  <h3>Current Project Goes Here</h3>
-                </header>
-              </article>
-            </div>
-            <div class="col-4 col-12-mobile">
-              <article class="item">
-                <a href="#" class="image fit"
-                  ><img src="images/pic06.jpg" alt=""
-                /></a>
-                <header>
-                  <h3>Dolor Penatibus</h3>
-                </header>
-              </article>
-              <article class="item">
+              <!-- <article class="item">
                 <a href="#" class="image fit"
                   ><img src="images/pic07.jpg" alt=""
                 /></a>
                 <header>
-                  <h3>Orci Convallis</h3>
+                  <h3>Project 5</h3>
                 </header>
-              </article>
+              </article> -->
             </div>
           </div>
         </div>
@@ -190,7 +206,7 @@
           </header>
 
           <a href="#" class="image featured"
-            ><img src="images/pic08.jpg" alt=""
+            ><img src="images/about-me.png" alt="A portrait of Andrew Maza"
           /></a>
 
           <p>
@@ -222,11 +238,17 @@
     <div id="footer">
       <!-- Copyright -->
       <ul class="copyright">
-        <li>&copy; 2024 Andrew Maza. All rights reserved.</li>
+        <li id="copyright-year"></li>
       </ul>
     </div>
 
     <!-- Scripts -->
+    <script>
+      const currentYear = new Date().getFullYear();
+      document.getElementById(
+        "copyright-year"
+      ).innerHTML = `&copy; ${currentYear} Andrew Maza. All rights reserved.`;
+    </script>
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/js/jquery.scrolly.min.js"></script>
     <script src="assets/js/jquery.scrollex.min.js"></script>

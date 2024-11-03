@@ -1,9 +1,13 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <title>Andrew Maza Portfolio Page</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="index, follow" />
+    <title>Andrew Maza | Full-Stack Software Developer Portfolio</title>
     <link rel="icon" href="images/portfolio-favicon.png" type="image/png" />
-    <meta charset="utf-8" />
+
+    <!-- Open Graph Metadata -->
     <meta property="og:title" content="Andrew Maza Portfolio Page" />
     <meta
       name="description"
@@ -13,27 +17,38 @@
       property="og:description"
       content="Andrew Maza is a Full-Stack Software Developer with a passion for creating efficient, scalable web solutions."
     />
-    <meta property="og:image" content="images/Portfolio Avatar.png" />
+    <meta property="og:image" content="images/portfolio-avatar.png" />
     <meta property="og:url" content="https://andrew4857.github.io" />
     <meta property="og:type" content="website" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, user-scalable=no"
-    />
 
+    <!-- Preloading Fonts and External Connections -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
+    <link
+      rel="preload"
+      href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300italic,400,600&display=swap"
+      as="style"
+      onload="this.rel='stylesheet'"
+    />
     <link rel="stylesheet" href="assets/css/main.css" />
   </head>
-  <body class="is-preload">
+  <body>
+    <a href="#main" class="skip-to-content">Skip to main content</a>
     <!-- Header -->
-    <div id="header">
+    <header id="header" role="banner">
       <div class="top">
         <!-- Logo -->
         <div id="logo">
-          <span class="image avatar48"
-            ><img
+          <span class="image avatar48">
+            <img
               src="images/portfolio-avatar.png"
+              srcset="
+                images/portfolio-avatar-480.png 480w,
+                images/portfolio-avatar-768.png 768w
+              "
               alt="Portrait of Andrew Maza"
-          /></span>
+              loading="lazy"
+            />
+          </span>
           <div class="name-container">
             <h1 id="title">Andrew Maza</h1>
             <p>Full-Stack Software Developer</p>
@@ -41,25 +56,25 @@
         </div>
 
         <!-- Navigation -->
-        <nav id="nav">
+        <nav id="nav" role="navigation" aria-label="Main Navigation">
           <ul>
             <li>
-              <a href="#top" id="top-link"
+              <a href="#top" aria-current="page"
                 ><span class="icon solid fa-home">Intro</span></a
               >
             </li>
             <li>
-              <a href="#portfolio" id="portfolio-link"
+              <a href="#portfolio"
                 ><span class="icon solid fa-th">Portfolio</span></a
               >
             </li>
             <li>
-              <a href="#about" id="about-link"
+              <a href="#about"
                 ><span class="icon solid fa-user">About Me</span></a
               >
             </li>
             <li>
-              <a href="#contact" id="contact-link"
+              <a href="#contact"
                 ><span class="icon solid fa-envelope">Contact</span></a
               >
             </li>
@@ -74,260 +89,258 @@
             <a
               href="https://www.linkedin.com/in/andrewmaza"
               class="icon brands fa-linkedin"
-              ><span class="label">LinkedIn</span></a
-            >
+              aria-label="LinkedIn"
+              target="_blank"
+              rel="noopener"
+            ></a>
           </li>
           <li>
             <a
               href="https://github.com/andrew4857"
               class="icon brands fa-github"
-              ><span class="label">Github</span></a
-            >
+              aria-label="GitHub"
+              target="_blank"
+              rel="noopener"
+            ></a>
           </li>
           <li>
             <a
               href="https://gitlab.com/andrew7864"
               class="icon brands fa-gitlab"
-              ><span class="label">GitLab</span></a
-            >
+              aria-label="GitLab"
+              target="_blank"
+              rel="noopener"
+            ></a>
           </li>
           <li>
             <a
               href="mailto:andrew.maza.22@gmail.com"
               class="icon solid fa-envelope"
-              ><span class="label">Email</span></a
-            >
+              aria-label="Email"
+            ></a>
           </li>
         </ul>
       </div>
-    </div>
+    </header>
 
-    <!-- Main -->
-    <div id="main">
-      <!-- Intro -->
+    <!-- Main Content -->
+    <main id="main">
+      <!-- Intro Section -->
       <section id="top" class="one dark cover">
         <div class="container">
           <header>
             <h2 class="alt">
               Hi! I'm <strong>Andrew Maza</strong>, a passionate Full-Stack
-              Developer specializing in creating efficient, scalable web
-              solutions.
+              Developer.
             </h2>
             <p>
-              I build responsive web applications using technologies such as
-              JavaScript, React, and Python.
+              I build responsive web applications using JavaScript, React, and
+              Python.
             </p>
           </header>
-
           <footer>
             <a href="#portfolio" class="button scrolly">View My Work</a>
           </footer>
         </div>
       </section>
 
-      <!-- Portfolio -->
+      <!-- Portfolio Section -->
       <section id="portfolio" class="two">
         <div class="container">
           <header>
             <h2>Portfolio</h2>
           </header>
-
           <p>
-            Here are a few projects I've worked on recently. My expertise
-            includes developing full-stack applications, designing clean user
-            interfaces, and ensuring optimal performance across various
-            platforms. Click on a project to navigate to the code repository.
-            Deployed websites coming soon!
+            Here are a few projects I've worked on recently. Click on a project
+            to navigate to the code repository. Deployed websites coming soon!
           </p>
 
-          <div class="row">
+          <!-- Featured Project -->
+          <div class="featured-project">
+            <h3>Featured Project</h3>
+            <article
+              class="col-4 col-12-mobile item card project-card"
+              data-url="https://gitlab.com/nomadsmaypt/helloroad"
+            >
+              <a
+                href="https://gitlab.com/nomadsmaypt/helloroad"
+                class="image fit"
+                target="_blank"
+                rel="noopener"
+              >
+                <img
+                  src="images/helloroad-image.png"
+                  srcset="
+                    images/helloroad-image-480.png 480w,
+                    images/helloroad-image-768.png 768w
+                  "
+                  alt="HelloRoad Project Screenshot"
+                  loading="lazy"
+                />
+              </a>
+              <header>
+                <h3>HelloRoad</h3>
+                <hr />
+                <p>
+                  A travel and adventure website to document memories and share
+                  with friends and family members.
+                </p>
+              </header>
+            </article>
+          </div>
+
+          <h3>Projects</h3>
+          <hr class="project-separator" />
+
+          <!-- Other Projects -->
+          <div class="row project-container">
             <!-- Project 1: Automobile Dealership Site -->
-            <div class="col-4 col-12-mobile">
-              <article
-                class="item card"
-                data-url="https://gitlab.com/jveliquette/project-beta"
+            <article
+              class="col-4 col-12-mobile item card project-card"
+              data-url="https://gitlab.com/jveliquette/project-beta"
+            >
+              <a
+                href="https://gitlab.com/jveliquette/project-beta"
+                class="image fit"
+                target="_blank"
+                rel="noopener"
               >
-                <a
-                  href="https://gitlab.com/jveliquette/project-beta"
-                  class="image fit"
-                  target="_blank"
-                >
-                  <img
-                    src="images/car-car.png"
-                    alt="Screenshot of an automobile dealership site showing car listings and search features."
-                    loading="lazy"
-                  />
-                </a>
-                <header>
-                  <h3>Automobile Dealership Site</h3>
-                  <hr />
-                  <p>
-                    A responsive website that tracks sales and servicing for an
-                    automobile dealership.
-                  </p>
-                </header>
-              </article>
-            </div>
+                <img
+                  src="images/car-car.png"
+                  srcset="
+                    images/car-car-480.png 480w,
+                    images/car-car-768.png 768w
+                  "
+                  alt="Automobile Dealership Site Screenshot"
+                  loading="lazy"
+                />
+              </a>
+              <header>
+                <h3>Automobile Dealership Site</h3>
+                <hr />
+                <p>
+                  A responsive website that tracks sales and servicing for an
+                  automobile dealership.
+                </p>
+              </header>
+            </article>
 
-            <!-- Project 2: HelloRoad -->
-            <div class="col-4 col-12-mobile">
-              <article
-                class="item card"
-                data-url="https://gitlab.com/nomadsmaypt/helloroad"
+            <!-- Project 2: Project Task Manager -->
+            <article
+              class="col-4 col-12-mobile item card project-card"
+              data-url="https://gitlab.com/andrew7864/project-alpha-apr"
+            >
+              <a
+                href="https://gitlab.com/andrew7864/project-alpha-apr"
+                class="image fit"
+                target="_blank"
+                rel="noopener"
               >
-                <a
-                  href="https://gitlab.com/nomadsmaypt/helloroad"
-                  class="image fit"
-                  target="_blank"
-                >
-                  <img
-                    src="images/helloroad-image.png"
-                    alt="A brand image for HelloRoad."
-                    loading="lazy"
-                  />
-                </a>
-                <header>
-                  <h3>HelloRoad</h3>
-                  <hr />
-                  <p>
-                    A travel and adventure website to document memories and
-                    share with friends and family members.
-                  </p>
-                </header>
-              </article>
+                <img
+                  src="images/project-task-manager.png"
+                  srcset="
+                    images/project-task-manager-480.png 480w,
+                    images/project-task-manager-768.png 768w
+                  "
+                  alt="Project Task Manager Screenshot"
+                  loading="lazy"
+                />
+              </a>
+              <header>
+                <h3>Project Task Manager</h3>
+                <hr />
+                <p>
+                  A project management tool to track projects and tasks
+                  associated with the project.
+                </p>
+              </header>
+            </article>
 
-              <!-- Project 3: Coming Soon -->
-              <article class="item card">
-                <a href="#" class="image fit">
-                  <img
-                    src="images/project-coming-soon.png"
-                    alt="An image of technology for a project that is in the works."
-                    loading="lazy"
-                  />
-                </a>
-                <header>
-                  <h3>Project Reveal Coming Soon!</h3>
-                  <hr />
-                  <p>
-                    Stay tuned for an exciting new project currently in
-                    development. Check back soon!
-                  </p>
-                </header>
-              </article>
-            </div>
-
-            <!-- Project 4: Project Task Manager -->
-            <div class="col-4 col-12-mobile">
-              <article
-                class="item card"
-                data-url="https://gitlab.com/andrew7864/project-alpha-apr"
-              >
-                <a
-                  href="https://gitlab.com/andrew7864/project-alpha-apr"
-                  class="image fit"
-                  target="_blank"
-                >
-                  <img
-                    src="images/project-task-manager.png"
-                    alt="An image of a project management dashboard."
-                    loading="lazy"
-                  />
-                </a>
-                <header>
-                  <h3>Project Task Manager</h3>
-                  <hr />
-                  <p>
-                    A project management tool to track projects and tasks
-                    associated with the project.
-                  </p>
-                </header>
-              </article>
-            </div>
+            <!-- Project 3: Coming Soon -->
+            <article class="col-4 col-12-mobile item card project-card">
+              <a href="#" class="image fit">
+                <img
+                  src="images/project-coming-soon.png"
+                  srcset="
+                    images/project-coming-soon-480.png 480w,
+                    images/project-coming-soon-768.png 768w
+                  "
+                  alt="Coming Soon Project Image"
+                  loading="lazy"
+                />
+              </a>
+              <header>
+                <h3>Project Reveal Coming Soon!</h3>
+                <hr />
+                <p>
+                  Stay tuned for an exciting new project currently in
+                  development. Check back soon!
+                </p>
+              </header>
+            </article>
           </div>
         </div>
       </section>
 
-      <!-- About Me -->
+      <!-- About Me Section -->
       <section id="about" class="three">
         <div class="container">
           <header>
             <h2>About Me</h2>
           </header>
-
-          <a href="#" class="image featured"
-            ><img
-              src="images/about-me.png"
-              alt="A portrait of Andrew Maza"
-              loading="lazy"
-          /></a>
-
+          <img
+            src="images/about-me.png"
+            srcset="images/about-me-480.png 480w, images/about-me-768.png 768w"
+            alt="A portrait of Andrew Maza"
+            class="image featured"
+            loading="lazy"
+          />
           <p>
-            I am a full-stack developer with a deep love for problem-solving and
-            building high-performing web applications. I've honed my skills in
-            technologies like JavaScript, Python, and SQL.
+            I am a full-stack developer with skills in JavaScript, Python, and
+            SQL.
           </p>
         </div>
       </section>
 
-      <!-- Contact -->
+      <!-- Contact Section -->
       <section id="contact" class="four">
         <div class="container">
           <header>
             <h2>Contact</h2>
           </header>
-
           <p>
-            If you're looking for a skilled developer to join your team or
-            collaborate on a project, feel free to get in touch!
+            If you're looking for a developer to join your team or collaborate,
+            feel free to get in touch!
           </p>
-          <div style="text-align: center; margin-top: 20px">
-            <a href="mailto:andrew.maza.22@gmail.com" class="button"
-              >Email Me</a
-            >
-          </div>
+          <a href="mailto:andrew.maza.22@gmail.com" class="button">Email Me</a>
         </div>
       </section>
-    </div>
+    </main>
 
     <!-- Footer -->
-    <div id="footer">
+    <footer id="footer">
       <p>
         &copy; <span id="copyright-year"></span> Andrew Maza. All rights
         reserved.
       </p>
-    </div>
+    </footer>
 
-    <script defer src="assets/js/jquery.min.js"></script>
-    <script defer src="assets/js/jquery.scrolly.min.js"></script>
-    <script defer src="assets/js/jquery.scrollex.min.js"></script>
-    <script defer src="assets/js/browser.min.js"></script>
-    <script defer src="assets/js/breakpoints.min.js"></script>
-    <script defer src="assets/js/util.js"></script>
-    <script defer src="assets/js/main.js"></script>
+    <!-- JavaScript -->
+    <script async src="assets/js/main.js"></script>
     <script>
-      document.getElementById("copyright-year").textContent =
-        new Date().getFullYear();
-    </script>
-    <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        document.querySelectorAll(".card").forEach((card) => {
-          const url = card.getAttribute("data-url");
-          if (url) {
-            card.addEventListener("click", (event) => {
-              if (!event.target.closest("a")) {
-                window.open(url, "_blank");
-              }
-            });
-          } else {
-            card.addEventListener("click", (event) => {
-              event.preventDefault();
-              card.classList.add("pulse-animation");
-              setTimeout(() => {
-                card.classList.remove("pulse-animation");
-              }, 400);
-            });
-          }
-        });
+      document.addEventListener("DOMContentLoaded", () => {
+        document.getElementById("copyright-year").textContent =
+          new Date().getFullYear();
+
+        // Event delegation for project-card clicks
+        document
+          .querySelector(".project-container")
+          .addEventListener("click", (event) => {
+            const card = event.target.closest(".project-card");
+            if (card && card.dataset.url) {
+              window.open(card.dataset.url, "_blank");
+            }
+          });
       });
     </script>
   </body>

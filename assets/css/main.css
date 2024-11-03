@@ -2914,3 +2914,10 @@ button:active,
 .pulse-animation {
   animation: pulse 0.6s ease-out infinite;
 }
+.project-separator {
+  width: 80%;
+  margin: 2em auto;
+  border: none;
+  border-top: 2px solid #ccc; /* Change color if desired */
+  opacity: 0.7;
+}

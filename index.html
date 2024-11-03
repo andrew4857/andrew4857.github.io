@@ -15,6 +15,41 @@
       name="viewport"
       content="width=device-width, initial-scale=1, user-scalable=no"
     />
+
+    <!-- Inline critical CSS for faster first paint -->
+    <style>
+      /* Minimal critical CSS to improve initial load time */
+      body {
+        font-family: "Source Sans Pro", sans-serif;
+        font-weight: 300;
+        color: #888;
+        margin: 0;
+        padding: 0;
+        overflow-x: hidden;
+      }
+      #header {
+        position: fixed;
+        width: 100%;
+        background-color: #222;
+        color: #fff;
+      }
+      .button {
+        background-color: #00a1a7;
+        color: #fff;
+        padding: 1em 2em;
+        border-radius: 5px;
+        text-decoration: none;
+        font-weight: 600;
+      }
+      .button:hover {
+        background-color: #008b90;
+      }
+      h2 {
+        color: #666;
+      }
+    </style>
+
+    <!-- Link to the rest of the CSS file for full styling -->
     <link rel="stylesheet" href="assets/css/main.css" />
   </head>
   <body class="is-preload">
@@ -34,7 +69,7 @@
           </div>
         </div>
 
-        <!-- Nav -->
+        <!-- Navigation -->
         <nav id="nav">
           <ul>
             <li>
@@ -130,53 +165,100 @@
             Here are a few projects I've worked on recently. My expertise
             includes developing full-stack applications, designing clean user
             interfaces, and ensuring optimal performance across various
-            platforms.
+            platforms. Click on the image to navigate to the code repository!
           </p>
 
           <div class="row">
+            <!-- Project 1: Automobile Dealership Site -->
             <div class="col-4 col-12-mobile">
-              <article class="item">
-                <a href="#" class="image fit"
-                  ><img
+              <article class="item card">
+                <a
+                  href="https://example.com/automobile-dealership"
+                  class="image fit"
+                  target="_blank"
+                >
+                  <img
                     src="images/car-car.png"
                     alt="Screenshot of an automobile dealership site showing car listings and search features."
-                /></a>
+                    loading="lazy"
+                  />
+                </a>
                 <header>
                   <h3>Automobile Dealership Site</h3>
+                  <hr />
+                  <p>
+                    A responsive website that tracks sales and servicing for an
+                    automobile dealership.
+                  </p>
                 </header>
               </article>
             </div>
+
+            <!-- Project 2: HelloRoad -->
             <div class="col-4 col-12-mobile">
-              <article class="item">
-                <a href="#" class="image fit"
-                  ><img
+              <article class="item card">
+                <a
+                  href="https://example.com/helloroad"
+                  class="image fit"
+                  target="_blank"
+                >
+                  <img
                     src="images/helloroad-image.png"
-                    alt="A brand image for HelloRoad, which depicts an all terrain vehicle on the top of the world and hot air baloons in the background."
-                /></a>
+                    alt="A brand image for HelloRoad."
+                    loading="lazy"
+                  />
+                </a>
                 <header>
                   <h3>HelloRoad</h3>
+                  <hr />
+                  <p>
+                    A travel and adventure website to document memories and
+                    share with friends and family members.
+                  </p>
                 </header>
               </article>
-              <article class="item">
-                <a href="#" class="image fit"
-                  ><img
+
+              <!-- Project 3: Coming Soon -->
+              <article class="item card">
+                <a href="#" class="image fit">
+                  <img
                     src="images/project-coming-soon.png"
-                    alt="An image of technology for a project that is in the work."
-                /></a>
+                    alt="An image of technology for a project that is in the works."
+                    loading="lazy"
+                  />
+                </a>
                 <header>
                   <h3>Project Reveal Coming Soon!</h3>
+                  <hr />
+                  <p>
+                    Stay tuned for an exciting new project currently in
+                    development. Check back soon!
+                  </p>
                 </header>
               </article>
             </div>
+
+            <!-- Project 4: Project Task Manager -->
             <div class="col-4 col-12-mobile">
-              <article class="item">
-                <a href="#" class="image fit"
-                  ><img
+              <article class="item card">
+                <a
+                  href="https://example.com/task-manager"
+                  class="image fit"
+                  target="_blank"
+                >
+                  <img
                     src="images/project-task-manager.png"
-                    alt="An image of a project management dashboard that tracks project name with the number of tasks."
-                /></a>
+                    alt="An image of a project management dashboard."
+                    loading="lazy"
+                  />
+                </a>
                 <header>
                   <h3>Project Task Manager</h3>
+                  <hr />
+                  <p>
+                    A project management tool to track projects and tasks
+                    associated with the project.
+                  </p>
                 </header>
               </article>
             </div>
@@ -192,15 +274,16 @@
           </header>
 
           <a href="#" class="image featured"
-            ><img src="images/about-me.png" alt="A portrait of Andrew Maza"
+            ><img
+              src="images/about-me.png"
+              alt="A portrait of Andrew Maza"
+              loading="lazy"
           /></a>
 
           <p>
             I am a full-stack developer with a deep love for problem-solving and
             building high-performing web applications. I've honed my skills in
-            technologies like JavaScript, Python, and SQL. My work spans across
-            industries from e-commerce to healthcare, delivering solutions that
-            drive growth and improve user experiences.
+            technologies like JavaScript, Python, and SQL.
           </p>
         </div>
       </section>
@@ -227,25 +310,25 @@
 
     <!-- Footer -->
     <div id="footer">
-      <!-- Copyright -->
-      <ul class="copyright">
-        <li id="copyright-year"></li>
-      </ul>
+      <p>
+        &copy; <span id="copyright-year"></span> Andrew Maza. All rights
+        reserved.
+      </p>
     </div>
 
-    <!-- Scripts -->
+    <!-- Scripts: Defer non-essential scripts to avoid render-blocking -->
+    <script defer src="assets/js/jquery.min.js"></script>
+    <script defer src="assets/js/jquery.scrolly.min.js"></script>
+    <script defer src="assets/js/jquery.scrollex.min.js"></script>
+    <script defer src="assets/js/browser.min.js"></script>
+    <script defer src="assets/js/breakpoints.min.js"></script>
+    <script defer src="assets/js/util.js"></script>
+    <script defer src="assets/js/main.js"></script>
+
+    <!-- Inline script to dynamically set the copyright year -->
     <script>
-      const currentYear = new Date().getFullYear();
-      document.getElementById(
-        "copyright-year"
-      ).innerHTML = `&copy; ${currentYear} Andrew Maza. All rights reserved.`;
+      document.getElementById("copyright-year").textContent =
+        new Date().getFullYear();
     </script>
-    <script src="assets/js/jquery.min.js"></script>
-    <script src="assets/js/jquery.scrolly.min.js"></script>
-    <script src="assets/js/jquery.scrollex.min.js"></script>
-    <script src="assets/js/browser.min.js"></script>
-    <script src="assets/js/breakpoints.min.js"></script>
-    <script src="assets/js/util.js"></script>
-    <script src="assets/js/main.js"></script>
   </body>
 </html>

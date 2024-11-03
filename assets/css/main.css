@@ -2445,6 +2445,13 @@ button:active,
   }
 }
 
+.one.dark.cover h2 strong {
+  font-weight: 900; /* Extra bold */
+  color: #fff; /* White color to make it pop against the background */
+  font-size: 1.3em; /* Slightly larger font size */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4); /* Subtle shadow for depth */
+}
+
 #main > section.two {
   background-color: #f5fafa;
 }
@@ -2827,4 +2834,59 @@ button:active,
   #footer .copyright li:first-child {
     margin-top: 0;
   }
+}
+/* Card styles for portfolio items */
+.card {
+  background: #fff;
+  border: 1px solid #ddd; /* Subtle border */
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  text-align: center;
+  padding: 1em;
+  margin-bottom: 1.5em;
+}
+
+.card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+}
+
+/* Ensure images fit well inside the card */
+.card img {
+  width: 100%;
+  border-bottom: 1px solid #ddd; /* Border between image and header */
+  transition: transform 0.3s ease;
+}
+
+.card:hover img {
+  transform: scale(1.05);
+}
+
+/* Header styling inside cards */
+.card header {
+  padding-top: 1em;
+}
+
+/* Bold project titles */
+.card h3 {
+  font-size: 1.25em;
+  color: #333;
+  margin: 0.5em 0;
+  font-weight: bold; /* Bold title */
+}
+
+.card hr {
+  width: 50%; /* Centered line */
+  border: none;
+  border-top: 1px solid #ddd;
+  margin: 0.5em auto;
+}
+
+/* Project description */
+.card p {
+  font-size: 0.9em;
+  color: #666;
+  margin-top: 0.5em;
 }

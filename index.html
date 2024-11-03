@@ -2,28 +2,6 @@
 <html>
   <head>
     <title>Andrew Maza Portfolio Page</title>
-    <style>
-      /* Pulse animation */
-      @keyframes pulse {
-        0% {
-          transform: scale(1);
-          box-shadow: 0 0 0 rgba(0, 0, 0, 0.1);
-        }
-        50% {
-          transform: scale(1.05);
-          box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-        }
-        100% {
-          transform: scale(1);
-          box-shadow: 0 0 0 rgba(0, 0, 0, 0.1);
-        }
-      }
-
-      /* Style to trigger the animation */
-      .card.pulse-animation {
-        animation: pulse 0.4s ease-out;
-      }
-    </style>
     <meta charset="utf-8" />
     <meta property="og:title" content="Andrew Maza Portfolio Page" />
     <meta
@@ -38,40 +16,6 @@
       content="width=device-width, initial-scale=1, user-scalable=no"
     />
 
-    <!-- Inline critical CSS for faster first paint -->
-    <style>
-      /* Minimal critical CSS to improve initial load time */
-      body {
-        font-family: "Source Sans Pro", sans-serif;
-        font-weight: 300;
-        color: #888;
-        margin: 0;
-        padding: 0;
-        overflow-x: hidden;
-      }
-      #header {
-        position: fixed;
-        width: 100%;
-        background-color: #222;
-        color: #fff;
-      }
-      .button {
-        background-color: #00a1a7;
-        color: #fff;
-        padding: 1em 2em;
-        border-radius: 5px;
-        text-decoration: none;
-        font-weight: 600;
-      }
-      .button:hover {
-        background-color: #008b90;
-      }
-      h2 {
-        color: #666;
-      }
-    </style>
-
-    <!-- Link to the rest of the CSS file for full styling -->
     <link rel="stylesheet" href="assets/css/main.css" />
   </head>
   <body class="is-preload">
@@ -348,7 +292,6 @@
       </p>
     </div>
 
-    <!-- Scripts: Defer non-essential scripts to avoid render-blocking -->
     <script defer src="assets/js/jquery.min.js"></script>
     <script defer src="assets/js/jquery.scrolly.min.js"></script>
     <script defer src="assets/js/jquery.scrollex.min.js"></script>
@@ -356,8 +299,6 @@
     <script defer src="assets/js/breakpoints.min.js"></script>
     <script defer src="assets/js/util.js"></script>
     <script defer src="assets/js/main.js"></script>
-
-    <!-- Inline script to dynamically set the copyright year -->
     <script>
       document.getElementById("copyright-year").textContent =
         new Date().getFullYear();
@@ -366,11 +307,10 @@
       document.addEventListener("DOMContentLoaded", function () {
         document.querySelectorAll(".card[data-url]").forEach((card) => {
           card.addEventListener("click", function (event) {
-            // Prevent navigating the nested <a> tag when clicking on the card
             if (!event.target.closest("a")) {
               const url = card.getAttribute("data-url");
               if (url) {
-                window.open(url, "_blank"); // Opens the URL in a new tab
+                window.open(url, "_blank");
               }
             }
           });
@@ -380,16 +320,14 @@
     <script>
       document.addEventListener("DOMContentLoaded", function () {
         document.querySelectorAll(".card").forEach((card) => {
-          // Apply animation only to "Coming Soon" card without a `data-url` attribute
           if (!card.getAttribute("data-url")) {
             card.addEventListener("click", function (event) {
-              event.preventDefault(); // Prevent any default actions
-              card.classList.add("pulse-animation"); // Add pulse animation
+              event.preventDefault();
+              card.classList.add("pulse-animation");
 
-              // Remove animation class after it finishes
               setTimeout(() => {
                 card.classList.remove("pulse-animation");
-              }, 400); // Match this duration with animation duration (0.4s)
+              }, 400);
             });
           }
         });

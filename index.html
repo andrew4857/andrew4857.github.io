@@ -2,11 +2,16 @@
 <html>
   <head>
     <title>Andrew Maza Portfolio Page</title>
+    <link rel="icon" href="images/portfolio-favicon.png" type="image/png" />
     <meta charset="utf-8" />
     <meta property="og:title" content="Andrew Maza Portfolio Page" />
     <meta
+      name="description"
+      content="Andrew Maza is a Full-Stack Software Developer with a passion for creating efficient, scalable web solutions."
+    />
+    <meta
       property="og:description"
-      content="Innovating the digital space with thoughtful development."
+      content="Andrew Maza is a Full-Stack Software Developer with a passion for creating efficient, scalable web solutions."
     />
     <meta property="og:image" content="images/Portfolio Avatar.png" />
     <meta property="og:url" content="https://andrew4857.github.io" />
@@ -305,26 +310,18 @@
     </script>
     <script>
       document.addEventListener("DOMContentLoaded", function () {
-        document.querySelectorAll(".card[data-url]").forEach((card) => {
-          card.addEventListener("click", function (event) {
-            if (!event.target.closest("a")) {
-              const url = card.getAttribute("data-url");
-              if (url) {
+        document.querySelectorAll(".card").forEach((card) => {
+          const url = card.getAttribute("data-url");
+          if (url) {
+            card.addEventListener("click", (event) => {
+              if (!event.target.closest("a")) {
                 window.open(url, "_blank");
               }
-            }
-          });
-        });
-      });
-    </script>
-    <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        document.querySelectorAll(".card").forEach((card) => {
-          if (!card.getAttribute("data-url")) {
-            card.addEventListener("click", function (event) {
+            });
+          } else {
+            card.addEventListener("click", (event) => {
               event.preventDefault();
               card.classList.add("pulse-animation");
-
               setTimeout(() => {
                 card.classList.remove("pulse-animation");
               }, 400);

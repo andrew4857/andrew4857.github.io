@@ -111,7 +111,12 @@ section {
 }
 
 body {
-  line-height: 1;
+  font-family: "Source Sans Pro", sans-serif;
+  font-weight: 300;
+  color: #888;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
 }
 
 ol,
@@ -2049,8 +2054,9 @@ button,
   border-radius: 0.35em;
   color: #fff !important;
   text-decoration: none;
+  font-weight: 600;
   padding: 0.75em 2.5em 0.75em 2.5em;
-  background-color: #8ebebc;
+  background-color: #00a1a7;
   border: 0;
   cursor: pointer;
   background-image: -moz-linear-gradient(
@@ -2084,7 +2090,7 @@ input[type="submit"]:hover,
 input[type="reset"]:hover,
 button:hover,
 .button:hover {
-  background-color: #9ececc;
+  background-color: #008b90;
 }
 
 input[type="button"]:active,
@@ -2165,6 +2171,7 @@ button:active,
   -ms-justify-content: space-between;
   justify-content: space-between;
   background: #222629 url("images/overlay.png");
+  background-color: #222;
   box-shadow: inset -0.25em 0 0.25em 0 rgba(0, 0, 0, 0.1);
   color: #fff;
   height: 100%;
@@ -2173,7 +2180,7 @@ button:active,
   position: fixed;
   text-align: right;
   top: 0;
-  width: 375px;
+  width: 100%;
 }
 
 #header .top {
@@ -2794,6 +2801,7 @@ button:active,
     font-size: 1.5em;
     letter-spacing: 0;
     font-weight: 300;
+    color: #666;
   }
 
   .container {
@@ -2903,7 +2911,6 @@ button:active,
   }
 }
 
-/* Applying the pulse effect to an element */
 .pulse-animation {
-  animation: pulse 0.6s ease-out infinite; /* Adjust duration and timing as needed */
+  animation: pulse 0.6s ease-out infinite;
 }

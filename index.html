@@ -2,6 +2,28 @@
 <html>
   <head>
     <title>Andrew Maza Portfolio Page</title>
+    <style>
+      /* Pulse animation */
+      @keyframes pulse {
+        0% {
+          transform: scale(1);
+          box-shadow: 0 0 0 rgba(0, 0, 0, 0.1);
+        }
+        50% {
+          transform: scale(1.05);
+          box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+        100% {
+          transform: scale(1);
+          box-shadow: 0 0 0 rgba(0, 0, 0, 0.1);
+        }
+      }
+
+      /* Style to trigger the animation */
+      .card.pulse-animation {
+        animation: pulse 0.4s ease-out;
+      }
+    </style>
     <meta charset="utf-8" />
     <meta property="og:title" content="Andrew Maza Portfolio Page" />
     <meta
@@ -165,15 +187,19 @@
             Here are a few projects I've worked on recently. My expertise
             includes developing full-stack applications, designing clean user
             interfaces, and ensuring optimal performance across various
-            platforms. Click on the image to navigate to the code repository!
+            platforms. Click on a project to navigate to the code repository.
+            Deployed websites coming soon!
           </p>
 
           <div class="row">
             <!-- Project 1: Automobile Dealership Site -->
             <div class="col-4 col-12-mobile">
-              <article class="item card">
+              <article
+                class="item card"
+                data-url="https://gitlab.com/jveliquette/project-beta"
+              >
                 <a
-                  href="https://example.com/automobile-dealership"
+                  href="https://gitlab.com/jveliquette/project-beta"
                   class="image fit"
                   target="_blank"
                 >
@@ -196,9 +222,12 @@
 
             <!-- Project 2: HelloRoad -->
             <div class="col-4 col-12-mobile">
-              <article class="item card">
+              <article
+                class="item card"
+                data-url="https://gitlab.com/nomadsmaypt/helloroad"
+              >
                 <a
-                  href="https://example.com/helloroad"
+                  href="https://gitlab.com/nomadsmaypt/helloroad"
                   class="image fit"
                   target="_blank"
                 >
@@ -240,9 +269,12 @@
 
             <!-- Project 4: Project Task Manager -->
             <div class="col-4 col-12-mobile">
-              <article class="item card">
+              <article
+                class="item card"
+                data-url="https://gitlab.com/andrew7864/project-alpha-apr"
+              >
                 <a
-                  href="https://example.com/task-manager"
+                  href="https://gitlab.com/andrew7864/project-alpha-apr"
                   class="image fit"
                   target="_blank"
                 >
@@ -329,6 +361,39 @@
     <script>
       document.getElementById("copyright-year").textContent =
         new Date().getFullYear();
+    </script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        document.querySelectorAll(".card[data-url]").forEach((card) => {
+          card.addEventListener("click", function (event) {
+            // Prevent navigating the nested <a> tag when clicking on the card
+            if (!event.target.closest("a")) {
+              const url = card.getAttribute("data-url");
+              if (url) {
+                window.open(url, "_blank"); // Opens the URL in a new tab
+              }
+            }
+          });
+        });
+      });
+    </script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        document.querySelectorAll(".card").forEach((card) => {
+          // Apply animation only to "Coming Soon" card without a `data-url` attribute
+          if (!card.getAttribute("data-url")) {
+            card.addEventListener("click", function (event) {
+              event.preventDefault(); // Prevent any default actions
+              card.classList.add("pulse-animation"); // Add pulse animation
+
+              // Remove animation class after it finishes
+              setTimeout(() => {
+                card.classList.remove("pulse-animation");
+              }, 400); // Match this duration with animation duration (0.4s)
+            });
+          }
+        });
+      });
     </script>
   </body>
 </html>

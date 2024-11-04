@@ -2,6 +2,18 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="
+    default-src 'self';
+    script-src 'self' 'unsafe-inline';
+    style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
+    font-src 'self' https://fonts.gstatic.com data:;
+    img-src 'self' data:;
+    connect-src 'self';
+    upgrade-insecure-requests;
+  "
+    />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="robots" content="index, follow" />
     <meta
@@ -9,7 +21,7 @@
       content="Andrew Maza is a Full-Stack Software Developer with a passion for creating efficient, scalable web solutions."
     />
     <title>Andrew Maza | Full-Stack Software Developer Portfolio</title>
-    <link rel="icon" href="/images/portfolio-favicon.png" type="image/png" />
+    <link rel="icon" href="./images/portfolio-favicon.png" type="image/png" />
 
     <!-- Open Graph Metadata -->
     <meta property="og:title" content="Andrew Maza Portfolio Page" />
@@ -17,11 +29,11 @@
       property="og:description"
       content="Andrew Maza is a Full-Stack Software Developer with a passion for creating efficient, scalable web solutions."
     />
-    <meta property="og:image" content="/images/portfolio-avatar.png" />
+    <meta property="og:image" content="./images/portfolio-avatar.png" />
     <meta property="og:url" content="https://andrew4857.github.io" />
     <meta property="og:type" content="website" />
 
-    <link rel="stylesheet" href="/assets/css/main.css" />
+    <link rel="stylesheet" href="./assets/css/main.css" />
   </head>
   <body>
     <a href="#main" class="skip-to-content">Skip to main content</a>
@@ -32,7 +44,7 @@
         <div id="logo">
           <span class="image avatar48">
             <img
-              src="/images/portfolio-avatar.webp"
+              src="./images/portfolio-avatar.webp"
               alt="Portrait of Andrew Maza"
               width="48"
               height="48"
@@ -81,7 +93,7 @@
               class="icon brands fa-linkedin"
               aria-label="LinkedIn"
               target="_blank"
-              rel="noopener"
+              rel="noopener noreferrer"
             ></a>
           </li>
           <li>
@@ -90,7 +102,7 @@
               class="icon brands fa-github"
               aria-label="GitHub"
               target="_blank"
-              rel="noopener"
+              rel="noopener noreferrer"
             ></a>
           </li>
           <li>
@@ -99,7 +111,7 @@
               class="icon brands fa-gitlab"
               aria-label="GitLab"
               target="_blank"
-              rel="noopener"
+              rel="noopener noreferrer"
             ></a>
           </li>
           <li>
@@ -154,10 +166,10 @@
                 href="https://gitlab.com/nomadsmaypt/helloroad"
                 class="image fit"
                 target="_blank"
-                rel="noopener"
+                rel="noopener noreferrer"
               >
                 <img
-                  src="/images/helloroad-image.webp"
+                  src="./images/helloroad-image.webp"
                   alt="HelloRoad Project Screenshot"
                   loading="lazy"
                   width="700"
@@ -190,10 +202,10 @@
                 href="https://gitlab.com/jveliquette/project-beta"
                 class="image fit"
                 target="_blank"
-                rel="noopener"
+                rel="noopener noreferrer"
               >
                 <img
-                  src="/images/car-car.webp"
+                  src="./images/car-car.webp"
                   alt="Automobile Dealership Site Screenshot"
                   loading="lazy"
                   width="300"
@@ -218,10 +230,10 @@
                 href="https://gitlab.com/andrew7864/project-alpha-apr"
                 class="image fit"
                 target="_blank"
-                rel="noopener"
+                rel="noopener noreferrer"
               >
                 <img
-                  src="/images/project-task-manager.webp"
+                  src="./images/project-task-manager.webp"
                   alt="Project Task Manager Screenshot"
                   loading="lazy"
                   width="300"
@@ -244,7 +256,7 @@
             >
               <a href="#" class="image fit">
                 <img
-                  src="/images/project-coming-soon.webp"
+                  src="./images/project-coming-soon.webp"
                   alt="Coming Soon Project Image"
                   loading="lazy"
                   width="300"
@@ -269,7 +281,7 @@
         <div class="container">
           <header><h2>About Me</h2></header>
           <img
-            src="/images/about-me.webp"
+            src="./images/about-me.webp"
             alt="A portrait of Andrew Maza"
             class="image featured"
             loading="lazy"
@@ -305,11 +317,17 @@
     </footer>
 
     <!-- Modal Structure -->
-    <div id="comingSoonModal" class="modal">
+    <div
+      id="comingSoonModal"
+      class="modal"
+      role="dialog"
+      aria-labelledby="comingSoonTitle"
+      aria-describedby="comingSoonDescription"
+    >
       <div class="modal-content">
-        <span class="close-button">&times;</span>
-        <h2>Project Coming Soon!</h2>
-        <p>
+        <span class="close-button" aria-label="Close">&times;</span>
+        <h2 id="comingSoonTitle">Project Coming Soon!</h2>
+        <p id="comingSoonDescription">
           Stay tuned for an exciting new project currently in development. Check
           back soon!
         </p>
@@ -352,6 +370,12 @@
             }
           });
         }
+
+        document.querySelectorAll("img").forEach((img) => {
+          img.onerror = () => {
+            img.src = "./images/fallback-image.png"; // Set to your fallback image
+          };
+        });
       });
     </script>
   </body>

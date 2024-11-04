@@ -313,11 +313,9 @@
     <!-- JavaScript -->
     <script>
       document.addEventListener("DOMContentLoaded", () => {
-        // Update copyright year
         document.getElementById("copyright-year").textContent =
           new Date().getFullYear();
 
-        // Open external links for other project cards
         document
           .querySelector(".project-container")
           .addEventListener("click", (event) => {
@@ -327,23 +325,19 @@
             }
           });
 
-        // Get modal elements
         const comingSoonModal = document.getElementById("comingSoonModal");
         const closeButton = comingSoonModal.querySelector(".close-button");
 
-        // Open the modal when the "Coming Soon" card is clicked
         document
           .querySelector(".project-card:not([data-url])")
           .addEventListener("click", () => {
             comingSoonModal.style.display = "block";
           });
 
-        // Close the modal when the close button is clicked
         closeButton.addEventListener("click", () => {
           comingSoonModal.style.display = "none";
         });
 
-        // Close the modal when clicking outside the modal content
         window.addEventListener("click", (event) => {
           if (event.target === comingSoonModal) {
             comingSoonModal.style.display = "none";

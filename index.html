@@ -28,23 +28,6 @@
       href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300italic,400,600&display=swap"
     />
 
-    <!-- Inline Critical CSS -->
-    <style>
-      /* Minimize critical CSS here to reduce blocking */
-      body {
-        font-family: "Source Sans Pro", sans-serif;
-      }
-      .skip-to-content {
-        position: absolute;
-        top: -40px;
-        left: 0;
-      }
-      .skip-to-content:focus {
-        top: 0;
-      }
-      /* Additional critical CSS as needed */
-    </style>
-
     <link rel="stylesheet" href="assets/css/main.css" />
   </head>
   <body>
@@ -315,18 +298,57 @@
       </p>
     </footer>
 
+    <!-- Modal Structure -->
+    <div id="comingSoonModal" class="modal">
+      <div class="modal-content">
+        <span class="close-button">&times;</span>
+        <h2>Project Coming Soon!</h2>
+        <p>
+          Stay tuned for an exciting new project currently in development. Check
+          back soon!
+        </p>
+      </div>
+    </div>
+
     <!-- JavaScript -->
     <script>
       document.addEventListener("DOMContentLoaded", () => {
+        // Update copyright year
         document.getElementById("copyright-year").textContent =
           new Date().getFullYear();
+
+        // Open external links for other project cards
         document
           .querySelector(".project-container")
           .addEventListener("click", (event) => {
             const card = event.target.closest(".project-card");
-            if (card && card.dataset.url)
+            if (card && card.dataset.url) {
               window.open(card.dataset.url, "_blank");
+            }
           });
+
+        // Get modal elements
+        const comingSoonModal = document.getElementById("comingSoonModal");
+        const closeButton = comingSoonModal.querySelector(".close-button");
+
+        // Open the modal when the "Coming Soon" card is clicked
+        document
+          .querySelector(".project-card:not([data-url])")
+          .addEventListener("click", () => {
+            comingSoonModal.style.display = "block";
+          });
+
+        // Close the modal when the close button is clicked
+        closeButton.addEventListener("click", () => {
+          comingSoonModal.style.display = "none";
+        });
+
+        // Close the modal when clicking outside the modal content
+        window.addEventListener("click", (event) => {
+          if (event.target === comingSoonModal) {
+            comingSoonModal.style.display = "none";
+          }
+        });
       });
     </script>
   </body>

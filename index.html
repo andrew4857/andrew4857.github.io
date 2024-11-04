@@ -4,20 +4,20 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="robots" content="index, follow" />
-    <title>Andrew Maza | Full-Stack Software Developer Portfolio</title>
-    <link rel="icon" href="images/portfolio-favicon.png" type="image/png" />
-
-    <!-- Open Graph Metadata -->
-    <meta property="og:title" content="Andrew Maza Portfolio Page" />
     <meta
       name="description"
       content="Andrew Maza is a Full-Stack Software Developer with a passion for creating efficient, scalable web solutions."
     />
+    <title>Andrew Maza | Full-Stack Software Developer Portfolio</title>
+    <link rel="icon" href="/images/portfolio-favicon.png" type="image/png" />
+
+    <!-- Open Graph Metadata -->
+    <meta property="og:title" content="Andrew Maza Portfolio Page" />
     <meta
       property="og:description"
       content="Andrew Maza is a Full-Stack Software Developer with a passion for creating efficient, scalable web solutions."
     />
-    <meta property="og:image" content="images/portfolio-avatar.png" />
+    <meta property="og:image" content="/images/portfolio-avatar.png" />
     <meta property="og:url" content="https://andrew4857.github.io" />
     <meta property="og:type" content="website" />
 
@@ -27,8 +27,13 @@
       rel="stylesheet"
       href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300italic,400,600&display=swap"
     />
+    <style>
+      body {
+        font-family: "Source Sans Pro", sans-serif;
+      }
+    </style>
 
-    <link rel="stylesheet" href="assets/css/main.css" />
+    <link rel="stylesheet" href="/assets/css/main.css" />
   </head>
   <body>
     <a href="#main" class="skip-to-content">Skip to main content</a>
@@ -39,7 +44,7 @@
         <div id="logo">
           <span class="image avatar48">
             <img
-              src="images/portfolio-avatar.webp"
+              src="/images/portfolio-avatar.webp"
               alt="Portrait of Andrew Maza"
               width="48"
               height="48"
@@ -164,7 +169,7 @@
                 rel="noopener"
               >
                 <img
-                  src="images/helloroad-image.webp"
+                  src="/images/helloroad-image.webp"
                   alt="HelloRoad Project Screenshot"
                   loading="lazy"
                 />
@@ -198,7 +203,7 @@
                 rel="noopener"
               >
                 <img
-                  src="images/car-car.webp"
+                  src="/images/car-car.webp"
                   alt="Automobile Dealership Site Screenshot"
                   loading="lazy"
                 />
@@ -224,7 +229,7 @@
                 rel="noopener"
               >
                 <img
-                  src="images/project-task-manager.webp"
+                  src="/images/project-task-manager.webp"
                   alt="Project Task Manager Screenshot"
                   loading="lazy"
                 />
@@ -242,7 +247,7 @@
             <article class="col-4 col-12-mobile item card project-card">
               <a href="#" class="image fit">
                 <img
-                  src="images/project-coming-soon.webp"
+                  src="/images/project-coming-soon.webp"
                   alt="Coming Soon Project Image"
                   loading="lazy"
                 />
@@ -265,7 +270,7 @@
         <div class="container">
           <header><h2>About Me</h2></header>
           <img
-            src="images/about-me.webp"
+            src="/images/about-me.webp"
             alt="A portrait of Andrew Maza"
             class="image featured"
             loading="lazy"
@@ -316,33 +321,30 @@
         document.getElementById("copyright-year").textContent =
           new Date().getFullYear();
 
-        document
-          .querySelector(".project-container")
-          .addEventListener("click", (event) => {
+        const projectContainer = document.querySelector(".project-container");
+        if (projectContainer) {
+          projectContainer.addEventListener("click", (event) => {
             const card = event.target.closest(".project-card");
             if (card && card.dataset.url) {
               window.open(card.dataset.url, "_blank");
             }
           });
+        }
 
         const comingSoonModal = document.getElementById("comingSoonModal");
-        const closeButton = comingSoonModal.querySelector(".close-button");
+        const closeButton = comingSoonModal?.querySelector(".close-button");
 
-        document
-          .querySelector(".project-card:not([data-url])")
-          .addEventListener("click", () => {
-            comingSoonModal.style.display = "block";
+        if (comingSoonModal && closeButton) {
+          closeButton.addEventListener("click", () => {
+            comingSoonModal.style.display = "none";
           });
 
-        closeButton.addEventListener("click", () => {
-          comingSoonModal.style.display = "none";
-        });
-
-        window.addEventListener("click", (event) => {
-          if (event.target === comingSoonModal) {
-            comingSoonModal.style.display = "none";
-          }
-        });
+          window.addEventListener("click", (event) => {
+            if (event.target === comingSoonModal) {
+              comingSoonModal.style.display = "none";
+            }
+          });
+        }
       });
     </script>
   </body>

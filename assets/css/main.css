@@ -2379,7 +2379,7 @@ button:active,
 
 #main > section.one {
   background-color: #81918e;
-  background-image: url("../../images/portfolio-intro-background.jpeg");
+  background-image: url("../../images/portfolio-intro-background.webp");
 }
 
 /* Styles for the Intro Section with Background Image */
@@ -2920,4 +2920,16 @@ button:active,
   border: none;
   border-top: 2px solid #ccc; /* Change color if desired */
   opacity: 0.7;
+}
+/* Inline in <head> in index.html for key visuals and layout */
+body,
+h1,
+p,
+.button {
+  font-family: "Source Sans Pro", sans-serif;
+  color: #333;
+}
+.header-visible #header {
+  visibility: visible;
+  transition: visibility 0.5s;
 }

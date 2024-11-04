@@ -21,27 +21,45 @@
     <meta property="og:url" content="https://andrew4857.github.io" />
     <meta property="og:type" content="website" />
 
-    <!-- Preloading Fonts and External Connections -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
+    <!-- Preconnect and Preload Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      rel="preload"
+      rel="stylesheet"
       href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300italic,400,600&display=swap"
-      as="style"
-      onload="this.rel='stylesheet'"
     />
+
+    <!-- Inline Critical CSS -->
+    <style>
+      /* Minimize critical CSS here to reduce blocking */
+      body {
+        font-family: "Source Sans Pro", sans-serif;
+      }
+      .skip-to-content {
+        position: absolute;
+        top: -40px;
+        left: 0;
+      }
+      .skip-to-content:focus {
+        top: 0;
+      }
+      /* Additional critical CSS as needed */
+    </style>
+
     <link rel="stylesheet" href="assets/css/main.css" />
   </head>
   <body>
     <a href="#main" class="skip-to-content">Skip to main content</a>
+
     <!-- Header -->
     <header id="header" role="banner">
       <div class="top">
-        <!-- Logo -->
         <div id="logo">
           <span class="image avatar48">
             <img
-              src="images/portfolio-avatar.png"
+              src="images/portfolio-avatar.webp"
               alt="Portrait of Andrew Maza"
+              width="48"
+              height="48"
               loading="lazy"
             />
           </span>
@@ -143,9 +161,7 @@
       <!-- Portfolio Section -->
       <section id="portfolio" class="two">
         <div class="container">
-          <header>
-            <h2>Portfolio</h2>
-          </header>
+          <header><h2>Portfolio</h2></header>
           <p>
             Here are a few projects I've worked on recently. Click on a project
             to navigate to the code repository. Deployed websites coming soon!
@@ -165,7 +181,7 @@
                 rel="noopener"
               >
                 <img
-                  src="images/helloroad-image.png"
+                  src="images/helloroad-image.webp"
                   alt="HelloRoad Project Screenshot"
                   loading="lazy"
                 />
@@ -182,11 +198,12 @@
           </div>
 
           <h3>Projects</h3>
+
+          <!-- Separator -->
           <hr class="project-separator" />
 
           <!-- Other Projects -->
           <div class="row project-container">
-            <!-- Project 1: Automobile Dealership Site -->
             <article
               class="col-4 col-12-mobile item card project-card"
               data-url="https://gitlab.com/jveliquette/project-beta"
@@ -198,7 +215,7 @@
                 rel="noopener"
               >
                 <img
-                  src="images/car-car.png"
+                  src="images/car-car.webp"
                   alt="Automobile Dealership Site Screenshot"
                   loading="lazy"
                 />
@@ -213,7 +230,6 @@
               </header>
             </article>
 
-            <!-- Project 2: Project Task Manager -->
             <article
               class="col-4 col-12-mobile item card project-card"
               data-url="https://gitlab.com/andrew7864/project-alpha-apr"
@@ -225,7 +241,7 @@
                 rel="noopener"
               >
                 <img
-                  src="images/project-task-manager.png"
+                  src="images/project-task-manager.webp"
                   alt="Project Task Manager Screenshot"
                   loading="lazy"
                 />
@@ -240,11 +256,10 @@
               </header>
             </article>
 
-            <!-- Project 3: Coming Soon -->
             <article class="col-4 col-12-mobile item card project-card">
               <a href="#" class="image fit">
                 <img
-                  src="images/project-coming-soon.png"
+                  src="images/project-coming-soon.webp"
                   alt="Coming Soon Project Image"
                   loading="lazy"
                 />
@@ -265,11 +280,9 @@
       <!-- About Me Section -->
       <section id="about" class="three">
         <div class="container">
-          <header>
-            <h2>About Me</h2>
-          </header>
+          <header><h2>About Me</h2></header>
           <img
-            src="images/about-me.png"
+            src="images/about-me.webp"
             alt="A portrait of Andrew Maza"
             class="image featured"
             loading="lazy"
@@ -284,9 +297,7 @@
       <!-- Contact Section -->
       <section id="contact" class="four">
         <div class="container">
-          <header>
-            <h2>Contact</h2>
-          </header>
+          <header><h2>Contact</h2></header>
           <p>
             If you're looking for a developer to join your team or collaborate,
             feel free to get in touch!
@@ -305,20 +316,16 @@
     </footer>
 
     <!-- JavaScript -->
-    <script async src="assets/js/main.js"></script>
     <script>
       document.addEventListener("DOMContentLoaded", () => {
         document.getElementById("copyright-year").textContent =
           new Date().getFullYear();
-
-        // Event delegation for project-card clicks
         document
           .querySelector(".project-container")
           .addEventListener("click", (event) => {
             const card = event.target.closest(".project-card");
-            if (card && card.dataset.url) {
+            if (card && card.dataset.url)
               window.open(card.dataset.url, "_blank");
-            }
           });
       });
     </script>

@@ -238,7 +238,10 @@
               </header>
             </article>
 
-            <article class="col-4 col-12-mobile item card project-card">
+            <article
+              id="comingSoonProject"
+              class="col-4 col-12-mobile item card project-card"
+            >
               <a href="#" class="image fit">
                 <img
                   src="/images/project-coming-soon.webp"
@@ -337,6 +340,39 @@
             comingSoonModal.style.display = "none";
           });
 
+          window.addEventListener("click", (event) => {
+            if (event.target === comingSoonModal) {
+              comingSoonModal.style.display = "none";
+            }
+          });
+        }
+      });
+    </script>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        document.getElementById("copyright-year").textContent =
+          new Date().getFullYear();
+
+        const projectContainer = document.querySelector(".project-container");
+        const comingSoonProject = document.getElementById("comingSoonProject");
+        const comingSoonModal = document.getElementById("comingSoonModal");
+        const closeButton = comingSoonModal?.querySelector(".close-button");
+
+        // Show modal when "Coming Soon" project card is clicked
+        if (comingSoonProject) {
+          comingSoonProject.addEventListener("click", (event) => {
+            event.preventDefault();
+            comingSoonModal.style.display = "block";
+          });
+        }
+
+        // Close modal on close button click
+        if (comingSoonModal && closeButton) {
+          closeButton.addEventListener("click", () => {
+            comingSoonModal.style.display = "none";
+          });
+
+          // Close modal if clicked outside of it
           window.addEventListener("click", (event) => {
             if (event.target === comingSoonModal) {
               comingSoonModal.style.display = "none";

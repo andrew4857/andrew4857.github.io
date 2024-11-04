@@ -2955,3 +2955,23 @@ p,
 .close-button:hover {
   color: #333;
 }
+/* General responsive styling for images */
+.image.fit img,
+.image.featured {
+  width: 100%; /* Full width for mobile, adjusts based on container */
+  height: auto; /* Maintains aspect ratio by adjusting height */
+  max-width: 700px; /* Prevents images from becoming too large on larger screens */
+  object-fit: cover; /* Ensures images don’t stretch by cropping them if needed */
+}
+
+/* Specific adjustment for the About Me image to limit height */
+#about .image.featured {
+  max-height: 60vh; /* Limits height to 60% of viewport height on mobile */
+}
+
+/* Optional: Ensure no overflow in the header images */
+header .image.avatar48 img {
+  width: 48px; /* Fixes avatar size specifically */
+  height: 48px;
+  object-fit: cover; /* Prevents stretching of avatar */
+}

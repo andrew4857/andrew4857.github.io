@@ -1,105 +1,125 @@
-/*
-	Prologue by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
-*/
+// Set up breakpoints without jQuery (requires a breakpoint library, or implement custom logic)
+const breakpoints = {
+  wide: [961, 1880],
+  normal: [961, 1620],
+  narrow: [961, 1320],
+  narrower: [737, 960],
+  mobile: [null, 736],
+};
 
-(function ($) {
-  var $window = $(window),
-    $body = $("body"),
-    $nav = $("#nav");
+// Initial animations on page load
+window.addEventListener("load", () => {
+  setTimeout(() => {
+    document.body.classList.remove("is-preload");
+  }, 100);
+});
 
-  // Breakpoints.
-  breakpoints({
-    wide: ["961px", "1880px"],
-    normal: ["961px", "1620px"],
-    narrow: ["961px", "1320px"],
-    narrower: ["737px", "960px"],
-    mobile: [null, "736px"],
+// Navigation link handling
+const nav = document.getElementById("nav");
+const navLinks = nav.querySelectorAll("a");
+
+navLinks.forEach((link) => {
+  link.classList.add("scrolly");
+
+  link.addEventListener("click", (e) => {
+    const href = link.getAttribute("href");
+
+    if (!href.startsWith("#")) return; // Skip external links
+
+    e.preventDefault();
+
+    // Deactivate all links
+    navLinks.forEach((navLink) => navLink.classList.remove("active"));
+
+    // Activate clicked link and lock it
+    link.classList.add("active", "active-locked");
   });
 
-  // Play initial animations on page load.
-  $window.on("load", function () {
-    window.setTimeout(function () {
-      $body.removeClass("is-preload");
-    }, 100);
-  });
+  const section = document.querySelector(link.getAttribute("href"));
+  if (section) {
+    section.classList.add("inactive"); // Initially deactivate the section
 
-  // Nav.
-  var $nav_a = $nav.find("a");
-
-  $nav_a
-    .addClass("scrolly")
-    .on("click", function (e) {
-      var $this = $(this);
-
-      // External link? Bail.
-      if ($this.attr("href").charAt(0) != "#") return;
-
-      // Prevent default.
-      e.preventDefault();
-
-      // Deactivate all links.
-      $nav_a.removeClass("active");
-
-      // Activate link *and* lock it (so Scrollex doesn't try to activate other links as we're scrolling to this one's section).
-      $this.addClass("active").addClass("active-locked");
-    })
-    .each(function () {
-      var $this = $(this),
-        id = $this.attr("href"),
-        $section = $(id);
-
-      // No section for this link? Bail.
-      if ($section.length < 1) return;
-
-      // Scrollex.
-      $section.scrollex({
-        mode: "middle",
-        top: "-10vh",
-        bottom: "-10vh",
-        initialize: function () {
-          // Deactivate section.
-          $section.addClass("inactive");
-        },
-        enter: function () {
-          // Activate section.
-          $section.removeClass("inactive");
-
-          // No locked links? Deactivate all links and activate this section's one.
-          if ($nav_a.filter(".active-locked").length == 0) {
-            $nav_a.removeClass("active");
-            $this.addClass("active");
+    // Intersection Observer to trigger activation on view
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            section.classList.remove("inactive");
+            if (!document.querySelector(".active-locked")) {
+              navLinks.forEach((navLink) => navLink.classList.remove("active"));
+              link.classList.add("active");
+            }
+            if (link.classList.contains("active-locked")) {
+              link.classList.remove("active-locked");
+            }
           }
+        });
+      },
+      { rootMargin: "0px 0px 0px 0px", threshold: 0.5 } // Changed to 0px
+    );
 
-          // Otherwise, if this section's link is the one that's locked, unlock it.
-          else if ($this.hasClass("active-locked"))
-            $this.removeClass("active-locked");
-        },
-      });
+    observer.observe(section);
+  }
+});
+
+// Header toggle for mobile (creating elements dynamically)
+const headerToggle = document.createElement("div");
+headerToggle.id = "headerToggle";
+headerToggle.innerHTML = '<a href="#header" class="toggle"></a>';
+document.body.appendChild(headerToggle);
+
+// Panel functionality for header (replace with custom behavior if needed)
+const header = document.getElementById("header");
+const headerToggleLink = headerToggle.querySelector(".toggle");
+
+headerToggleLink.addEventListener("click", (e) => {
+  e.preventDefault();
+  document.body.classList.toggle("header-visible");
+  header.classList.toggle("visible");
+});
+
+// Set the copyright year
+document.addEventListener("DOMContentLoaded", () => {
+  document.getElementById("copyright-year").textContent =
+    new Date().getFullYear();
+
+  // Handle project card click to open links
+  const projectContainer = document.querySelector(".project-container");
+  if (projectContainer) {
+    projectContainer.addEventListener("click", (event) => {
+      const card = event.target.closest(".project-card");
+      if (card && card.dataset.url) {
+        window.open(card.dataset.url, "_blank");
+      }
+    });
+  }
+
+  // Modal functionality for the "coming soon" project
+  const comingSoonProject = document.getElementById("comingSoonProject");
+  const comingSoonModal = document.getElementById("comingSoonModal");
+  const closeButton = comingSoonModal?.querySelector(".close-button");
+
+  if (comingSoonProject && comingSoonModal) {
+    comingSoonProject.addEventListener("click", (event) => {
+      event.preventDefault();
+      comingSoonModal.style.display = "block";
     });
 
-  // Scrolly.
-  $(".scrolly").scrolly();
+    closeButton.addEventListener("click", () => {
+      comingSoonModal.style.display = "none";
+    });
 
-  // Header (narrower + mobile).
+    window.addEventListener("click", (event) => {
+      if (event.target === comingSoonModal) {
+        comingSoonModal.style.display = "none";
+      }
+    });
+  }
 
-  // Toggle.
-  $(
-    '<div id="headerToggle">' +
-      '<a href="#header" class="toggle"></a>' +
-      "</div>"
-  ).appendTo($body);
-
-  // Header.
-  $("#header").panel({
-    delay: 500,
-    hideOnClick: true,
-    hideOnSwipe: true,
-    resetScroll: true,
-    resetForms: true,
-    side: "left",
-    target: $body,
-    visibleClass: "header-visible",
+  // Fallback image handling for broken images
+  document.querySelectorAll("img").forEach((img) => {
+    img.onerror = () => {
+      img.src = "./images/fallback-image.png"; // Path to fallback image
+    };
   });
-})(jQuery);
+});

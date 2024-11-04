@@ -5,14 +5,14 @@
     <meta
       http-equiv="Content-Security-Policy"
       content="
-    default-src 'self';
-    script-src 'self' 'unsafe-inline';
-    style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
-    font-src 'self' https://fonts.gstatic.com data:;
-    img-src 'self' data:;
-    connect-src 'self';
-    upgrade-insecure-requests;
-  "
+        default-src 'self';
+        script-src 'self';
+        style-src 'self' https://fonts.googleapis.com;
+        font-src 'self' https://fonts.gstatic.com;
+        img-src 'self';
+        connect-src 'self';
+        upgrade-insecure-requests;
+      "
     />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="robots" content="index, follow" />
@@ -334,49 +334,7 @@
       </div>
     </div>
 
-    <!-- JavaScript -->
-    <script>
-      document.addEventListener("DOMContentLoaded", () => {
-        document.getElementById("copyright-year").textContent =
-          new Date().getFullYear();
-
-        const projectContainer = document.querySelector(".project-container");
-        if (projectContainer) {
-          projectContainer.addEventListener("click", (event) => {
-            const card = event.target.closest(".project-card");
-            if (card && card.dataset.url) {
-              window.open(card.dataset.url, "_blank");
-            }
-          });
-        }
-
-        const comingSoonProject = document.getElementById("comingSoonProject");
-        const comingSoonModal = document.getElementById("comingSoonModal");
-        const closeButton = comingSoonModal?.querySelector(".close-button");
-
-        if (comingSoonProject && comingSoonModal) {
-          comingSoonProject.addEventListener("click", (event) => {
-            event.preventDefault();
-            comingSoonModal.style.display = "block";
-          });
-
-          closeButton.addEventListener("click", () => {
-            comingSoonModal.style.display = "none";
-          });
-
-          window.addEventListener("click", (event) => {
-            if (event.target === comingSoonModal) {
-              comingSoonModal.style.display = "none";
-            }
-          });
-        }
-
-        document.querySelectorAll("img").forEach((img) => {
-          img.onerror = () => {
-            img.src = "./images/fallback-image.png"; // Set to your fallback image
-          };
-        });
-      });
-    </script>
+    <!-- External JavaScript File (Instead of Inline Scripts) -->
+    <script src="./assets/js/main.js"></script>
   </body>
 </html>

@@ -126,38 +126,78 @@ document.addEventListener("DOMContentLoaded", () => {
 
 // ===== New Vanilla JavaScript Additions ===== //
 
-// Smooth scrolling for anchor links
-// Avoid redeclaration by reusing `navLinks`
-navLinks.forEach((anchor) => {
-  anchor.addEventListener("click", function (e) {
-    e.preventDefault();
-    const targetElement = document.querySelector(this.getAttribute("href"));
-    if (targetElement) {
-      targetElement.scrollIntoView({ behavior: "smooth", block: "start" });
-    }
-  });
-});
-
-// Scroll activation using IntersectionObserver
-const sections = document.querySelectorAll("section");
-
+// Initialize the IntersectionObserver first
 const observer = new IntersectionObserver(
   (entries) => {
+    // Track the section closest to the center of the viewport
+    let closestSection = null;
+    let closestDistance = Number.POSITIVE_INFINITY;
+
     entries.forEach((entry) => {
       const link = document.querySelector(`#nav a[href="#${entry.target.id}"]`);
-      if (entry.isIntersecting) {
-        entry.target.classList.remove("inactive");
-        link?.classList.add("active");
-      } else {
-        entry.target.classList.add("inactive");
-        link?.classList.remove("active");
+      const sectionCenter =
+        entry.boundingClientRect.top + entry.boundingClientRect.height / 2;
+      const viewportCenter = window.innerHeight / 2;
+      const distanceToCenter = Math.abs(sectionCenter - viewportCenter);
+
+      // Update the closest section
+      if (entry.isIntersecting && distanceToCenter < closestDistance) {
+        closestSection = entry.target;
+        closestDistance = distanceToCenter;
       }
+
+      // Deactivate links not closest to the center
+      link?.classList.remove("active");
+      entry.target.classList.add("inactive");
     });
+
+    // Activate the closest section and its link
+    if (closestSection) {
+      const link = document.querySelector(
+        `#nav a[href="#${closestSection.id}"]`
+      );
+      link?.classList.add("active");
+      closestSection.classList.remove("inactive");
+    }
   },
-  { threshold: 0.5 }
+  {
+    threshold: 0, // Trigger at any intersection
+    rootMargin: "0px 0px -50% 0px", // Ensure sufficient buffer for bottom sections
+  }
 );
 
-sections.forEach((section) => observer.observe(section));
+// Select and observe all sections
+const sections = document.querySelectorAll("section");
+sections.forEach((section) => {
+  observer.observe(section);
+});
+
+// Re-observe sections on every scroll to ensure visibility updates
+window.addEventListener("scroll", () => {
+  sections.forEach((section) => observer.observe(section));
+});
+
+// Navigation link handling
+navLinks.forEach((link) => {
+  link.addEventListener("click", (e) => {
+    const href = link.getAttribute("href");
+
+    if (!href.startsWith("#")) return; // Skip external links
+
+    e.preventDefault();
+
+    const target = document.querySelector(href);
+    if (target) {
+      target.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+
+    // Deactivate all links
+    navLinks.forEach((navLink) => navLink.classList.remove("active"));
+
+    // Activate clicked link and lock it
+    link.classList.add("active", "active-locked");
+  });
+});
 
 // Fallback images for broken links (already handled above, no need to repeat)
 

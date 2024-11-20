@@ -16,7 +16,7 @@ window.addEventListener("load", () => {
 
 // Navigation link handling
 const nav = document.getElementById("nav");
-const navLinks = nav.querySelectorAll("a");
+const navLinks = nav.querySelectorAll("a"); // Declared here
 
 navLinks.forEach((link) => {
   link.classList.add("scrolly");
@@ -55,7 +55,7 @@ navLinks.forEach((link) => {
           }
         });
       },
-      { rootMargin: "0px 0px 0px 0px", threshold: 0.5 } // Changed to 0px
+      { rootMargin: "0px 0px 0px 0px", threshold: 0.5 }
     );
 
     observer.observe(section);
@@ -123,3 +123,46 @@ document.addEventListener("DOMContentLoaded", () => {
     };
   });
 });
+
+// ===== New Vanilla JavaScript Additions ===== //
+
+// Smooth scrolling for anchor links
+// Avoid redeclaration by reusing `navLinks`
+navLinks.forEach((anchor) => {
+  anchor.addEventListener("click", function (e) {
+    e.preventDefault();
+    const targetElement = document.querySelector(this.getAttribute("href"));
+    if (targetElement) {
+      targetElement.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  });
+});
+
+// Scroll activation using IntersectionObserver
+const sections = document.querySelectorAll("section");
+
+const observer = new IntersectionObserver(
+  (entries) => {
+    entries.forEach((entry) => {
+      const link = document.querySelector(`#nav a[href="#${entry.target.id}"]`);
+      if (entry.isIntersecting) {
+        entry.target.classList.remove("inactive");
+        link?.classList.add("active");
+      } else {
+        entry.target.classList.add("inactive");
+        link?.classList.remove("active");
+      }
+    });
+  },
+  { threshold: 0.5 }
+);
+
+sections.forEach((section) => observer.observe(section));
+
+// Fallback images for broken links (already handled above, no need to repeat)
+
+// Update copyright year dynamically (already handled above)
+
+// Project card navigation (already handled above)
+
+// Modal handling for "coming soon" project (already handled above)
